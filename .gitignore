@@ -32,6 +32,7 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+.firebaserc
 .firebase/
 firebase-debug.log
 firestore-debug.log

@@ -1,6 +1,6 @@
 {
   "projects": {
-    "staging": "chatboard-52d74"
+    "default": "your-firebase-project-id"
   },
   "targets": {},
   "etags": {}

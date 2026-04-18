@@ -17,7 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      return _requireConfigured(web);
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -36,7 +36,7 @@ class DefaultFirebaseOptions {
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
-        return windows;
+        return _requireConfigured(windows);
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -49,24 +49,36 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static FirebaseOptions _requireConfigured(FirebaseOptions options) {
+    const placeholderProjectId = 'YOUR_FIREBASE_PROJECT_ID';
+    if (options.projectId == placeholderProjectId) {
+      throw UnsupportedError(
+        'Firebase is not configured for this repository. '
+        'Run `flutterfire configure` and replace `lib/firebase_options.dart` '
+        'with the generated file for your own Firebase project.',
+      );
+    }
+    return options;
+  }
+
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBthO0Oun-4UaNZA-8WjYI-g8tMRXmb66g',
-    appId: '1:83108278035:web:f9386c2881b616077034e6',
-    messagingSenderId: '83108278035',
-    projectId: 'chatboard-52d74',
-    authDomain: 'chatboard-52d74.firebaseapp.com',
-    storageBucket: 'chatboard-52d74.firebasestorage.app',
-    measurementId: 'G-BZB3CGGY5H',
+    apiKey: 'YOUR_WEB_API_KEY',
+    appId: 'YOUR_WEB_APP_ID',
+    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+    projectId: 'YOUR_FIREBASE_PROJECT_ID',
+    authDomain: 'YOUR_FIREBASE_PROJECT_ID.firebaseapp.com',
+    storageBucket: 'YOUR_FIREBASE_PROJECT_ID.firebasestorage.app',
+    measurementId: 'YOUR_WEB_MEASUREMENT_ID',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBthO0Oun-4UaNZA-8WjYI-g8tMRXmb66g',
-    appId: '1:83108278035:web:2bbfe6a826f481737034e6',
-    messagingSenderId: '83108278035',
-    projectId: 'chatboard-52d74',
-    authDomain: 'chatboard-52d74.firebaseapp.com',
-    storageBucket: 'chatboard-52d74.firebasestorage.app',
-    measurementId: 'G-NHTGGJT3P9',
+    apiKey: 'YOUR_WINDOWS_API_KEY',
+    appId: 'YOUR_WINDOWS_APP_ID',
+    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+    projectId: 'YOUR_FIREBASE_PROJECT_ID',
+    authDomain: 'YOUR_FIREBASE_PROJECT_ID.firebaseapp.com',
+    storageBucket: 'YOUR_FIREBASE_PROJECT_ID.firebasestorage.app',
+    measurementId: 'YOUR_WINDOWS_MEASUREMENT_ID',
   );
 
 }

@@ -7,8 +7,6 @@
 
 The web app is the primary deployment target. Customers and admins both use the same app, and the UI is selected from the signed-in user's Firestore profile role.
 
-Live app: [https://chatboard-52d74.web.app](https://chatboard-52d74.web.app)
-
 ## Features
 
 - Email/password sign in and sign up
@@ -57,7 +55,7 @@ flutter pub get
 
 ### Configure Firebase
 
-This repo already contains `lib/firebase_options.dart`, but if you want to point the app to your own Firebase project, re-run FlutterFire:
+This public repo ships with a placeholder `lib/firebase_options.dart`. Before the app can run against Firebase, generate your own config with FlutterFire:
 
 ```bash
 dart pub global activate flutterfire_cli
@@ -65,6 +63,8 @@ flutterfire configure
 ```
 
 Make sure web is included. If you want desktop support, include Windows too.
+
+For Firebase CLI deploys, create your own local `.firebaserc` from `.firebaserc.example` and replace the placeholder project id.
 
 ### Run locally
 
@@ -192,13 +192,14 @@ The project is now set up for a cleaner GitHub publish:
 
 - build and cache folders are ignored in `.gitignore`
 - Firebase local cache files are ignored
+- tracked Firebase project identifiers have been removed from repo-level setup files
 - a CI workflow is included
 - the README matches the current app behavior and deployment flow
 
 Before publishing publicly, you may still want to:
 
 1. Choose and add a `LICENSE`
-2. Decide whether you want to keep the current Firebase project identifiers in the repo
+2. Rotate any Firebase or Google API keys that were previously committed
 3. Add screenshots or a short demo section if you want a stronger GitHub landing page
 
 ## License
